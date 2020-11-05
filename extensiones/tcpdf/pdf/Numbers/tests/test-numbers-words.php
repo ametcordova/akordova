@@ -46,8 +46,10 @@ while (strlen($shownum) % 3 != 0) {
   $shownum = " " . $shownum;
 }
 
-$shownum = ereg_replace("(...)", "\\1 ", $shownum);
-$shownum = ereg_replace(" $", "", $shownum);
+//$shownum = ereg_replace("(...)", "\\1 ", $shownum);
+$shownum = preg_replace("(...)", "\\1 ", $shownum);
+//$shownum = ereg_replace(" $", "", $shownum);
+$shownum = preg_replace(" $", "", $shownum);
 
 if ($html_on)
     echo "<center>Test number: <b><u>$shownum</u></b></center><p>\n";
@@ -78,7 +80,7 @@ reset($lang);
 
 foreach ($lang as $loc_symbol) {
   $classname = "Numbers_Words_" . $loc_symbol;
-  $obj =& new $classname;
+  $obj = new $classname;      //se quito & antes del new
   $ret = $obj->toWords($num);
   if (PEAR::isError($ret)) {
     if ($html_on) {
@@ -135,5 +137,4 @@ if ($html_on) {
 </center>
 <?
 }
-
 ?>
