@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilo.css">
+    <script defer src="script.js"></script>
+
+</head>
+
+
+<body>
+    <div class="ticket">
+        <img src="logotiposmall.png" alt="Logotipo" style="width:40%; align-items: center; text-align: center; padding-left: 5rem;">
+        <p class="centrado">TICKET DE VENTA
+            <br>New New York
+            <br>17/10/2017 02:22 a.m.
+            <p id="codigo"></p>
+            <br>_____________________________
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th class="producto">Descrip.</th>
+                    <th class="cantidad">Cant</th>
+                    <th class="precio">Tot.</th>
+                </tr>
+            </thead>
+            <tbody id="datosdeventa">
+
+            </tbody>
+        </table>
+        <p class="centrado">¡GRACIAS POR SU COMPRA!
+    </div>
+    <button class="oculto-impresion" onclick="imprimir()">Imprimir</button>
+</body>
+
+</html>
+<script>
+  let params = new URLSearchParams(location.search);
+  var codigo = params.get('codigo');
+  console.log("Ticket:",codigo);
+  document.getElementById('codigo').innerHTML = 'Ticket: '+codigo;
+</script>

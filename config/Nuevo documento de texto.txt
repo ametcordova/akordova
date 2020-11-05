@@ -1,0 +1,8 @@
+Usuario: akordova_root
+Base de datos: akordova_dbmodelo1
+contraseña: Super6908
+
+entrada al sistema akordova web
+super
+Super6908
+

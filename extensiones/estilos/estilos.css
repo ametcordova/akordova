@@ -1,0 +1,48 @@
+.truncate-text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 200px;
+}
+
+.boton_personalizado{
+  text-decoration: none;
+  width:140px;
+  padding: 6px;
+  font-weight: 300;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #1883ba;
+  border-radius: 6px;
+  border: 2px solid #30639e;
+}
+.boton_personalizado:hover{
+  cursor: pointer;
+  background-color: #4a87b3;
+}
+
+.select2 {
+  font-family: 'FontAwesome'
+};
+
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+  color: #0087ca;
+}
+.hover-underline-animation::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #0087ca;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+.hover-underline-animation:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}

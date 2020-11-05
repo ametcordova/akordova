@@ -1,0 +1,57 @@
+
+.both_border {
+    border-top: 1px dotted  black;
+	border-bottom: 1px dotted  black;
+   
+}
+
+td.quantity,
+th.quantity {
+    width: 8mm;
+    max-width: 8mm;
+    word-break: break-all;
+	text-align:center;
+}
+
+td.description,
+th.description {
+    width: 28mm;
+    max-width: 28mm;
+}
+
+td.price,
+th.price {
+    width: 11mm;
+    max-width: 11mm;
+    word-break: break-all;
+	text-align:right;
+}
+
+.centered {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    text-align: center;
+    align-content: center;
+}
+
+.ticket {
+    width: 55mm;
+    max-width: 55mm;
+}
+
+td.totales {
+    font-size: 15px;
+}
+
+
+img {
+    max-width: inherit;
+    width: inherit;
+}
+
+@media print {
+    .hidden-print,
+    .hidden-print * {
+        display: none !important;
+    }
+}

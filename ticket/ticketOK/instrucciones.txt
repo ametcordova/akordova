@@ -1,0 +1,2 @@
+Puedes conseguir las instrucciones de instalación en el siguiente post:
+https://obedalvarado.pw/blog/imprimir-tickets-en-una-impresora-termica-usando-php-javascript-css-y-html/
