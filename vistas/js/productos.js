@@ -276,21 +276,21 @@ $("#editarCodInterno").change(function(){
 })
 
 /*=============================================
-CAPTURANDO LA FAMILIA PARA MOSTRAR CATEGORIA
+CAPTURANDO LA FAMILIA PARA MOSTRAR LAS CATEGORIAS
 =============================================*/
-// $("#nuevaFamilia").on('change',function () {
-//     //$("#catDeVentas").val(0);
-//         //id_familia = $(this).val();
-//         let id_familia=$("#nuevaFamilia").val();
-// 		console.log("dato", id_familia);
-// 		$.post("ajax/adminalmacenes.ajax.php", { id_familia: id_familia }, function(datafamilia){
-//             //console.log(data);
-// 			$("#nuevaCategoria").html(datafamilia);
-// 		});            
-// })
+$("#nuevaFamilia").on('change',function () {
+    //$("#catDeVentas").val(0);
+        //id_familia = $(this).val();
+        let id_familia=$("#nuevaFamilia").val();
+		console.log("dato", id_familia);
+		$.post("ajax/adminalmacenes.ajax.php", { id_familia: id_familia }, function(datafamilia){
+            //console.log(data);
+			$("#nuevaCategoria").html(datafamilia);
+		});            
+})
 
 /*=============================================
-CAPTURANDO LA FAMILIA PARA MOSTRAR CATEGORIA
+MOSTRAR CATEGORIA SEGUN FAMILIA PARA EDITAR
 =============================================*/
 $(".editfam").on('change',function () {
         //console.log($(this).val());
@@ -531,30 +531,20 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function(){
                }
 
           })
-          var datosCategoria = new FormData();
-          datosCategoria.append("idCategoria",respuesta["id_categoria"]);
-          //console.log(respuesta["id_categoria"]);
-           $.ajax({
-            
-              url:"ajax/categorias.ajax.php",
-              method: "POST",
-              data: datosCategoria,
-              cache: false,
-              contentType: false,
-              processData: false,
-              dataType:"json",
-              success:function(respuesta){
-                  
-                  $("#editarCategoria").val(respuesta["id"]);
-                  $("#editarCategoria").html(respuesta["categoria"]);
 
-              },
-              error:function(response){
-                   console.log(response);
-               }
+          /* ============= TRAER CATEGORIA ================*/
+          let idfamilia=respuesta["id_familia"];
+          let idcategoria=respuesta["id_categoria"];
 
-          })
+            $.get("ajax/adminalmacenes.ajax.php?op=ObtenerCategoria", 
+            {idfamilia: idfamilia, idcategoria: idcategoria }, 
+            function(datacategoria){
+                //console.log(datacategoria);
+                $(".editarCategoria").html(datacategoria);
+            });            
 
+
+          /* ============= TRAER MEDIDA ================*/
           var datosMedida = new FormData();
           datosMedida.append("idMedida",respuesta["id_medida"]);
           //console.log(respuesta["id_medida"]);

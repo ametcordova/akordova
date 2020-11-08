@@ -72,3 +72,35 @@ img {
         display: none !important;
     }
 }
+
+.btn-bootstrap1 {
+    padding: .375rem .75rem;
+    border-radius: .25rem;
+    background-color: #007bff;
+    color: #fff;
+    transition: background-color .15s ease-in-out;
+  }
+  
+  .btn-bootstrap1:hover, .btn-bootstrap1:focus {
+    background-color: #041c35e5;
+  }
+  
+  .btn-bootstrap1:active {
+    background-color: #0062cc;
+  }
+
+  .btn-bootstrap2 {
+    padding: .375rem .75rem;
+    border-radius: .25rem;
+    background-color: #ffbb00;
+    color: #fff;
+    transition: background-color .15s ease-in-out;
+  }
+  
+  .btn-bootstrap2:hover, .btn-bootstrap2:focus {
+    background-color: #f3860af8;
+  }
+  
+  .btn-bootstrap2:active {
+    background-color: #0062cc;
+  }

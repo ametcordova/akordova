@@ -7,6 +7,36 @@ require_once "../modelos/permisos.modelo.php";
 
 require_once '../funciones/funciones.php';
 
+switch ($_GET["op"]){
+	
+	case 'ObtenerCategoria':
+        if(isset($_GET["idcategoria"])){
+            $item = "id_familia";
+            $valor = $_GET["idfamilia"];
+            $valorcat = $_GET["idcategoria"];
+            $tabla = "categorias";
+        
+            $respuesta = ControladorAlmacen::ctrMostrarCategory($tabla, $item, $valor);
+            
+            $html= "<option value='0'>Sel. Categoría</option>";
+                foreach ($respuesta as $key => $value) {
+                    if($valorcat==$value['id']){
+                        $html.= "<option selected value='".$value['id']."'>".$value['categoria']."</option>";  
+                    }else{
+                        $html.= "<option value='".$value['id']."'>".$value['categoria']."</option>";  
+                    }
+                  
+
+                }
+            
+            echo $html;
+            
+            //echo json_encode($respuesta);
+
+        };
+ 	break;
+}
+
 if(isset( $_GET["almacenSel"])){
 
 //VALIDA ACCESO

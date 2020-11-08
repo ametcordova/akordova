@@ -115,7 +115,7 @@ static Public function MdlMostrarCategory($tabla, $item, $valor){
 
 $idFam = (int) $valor;
 
-$where=$idFam>0?"$item=:$item":1;
+    $where=$idFam>0?"$item=:$item":1;
 
 	 $sql="SELECT id, id_familia, categoria FROM $tabla WHERE ".$where;
 	 
@@ -127,7 +127,6 @@ $where=$idFam>0?"$item=:$item":1;
 
         return $stmt->fetchAll();
     
-        $stmt->close();
         $stmt=null;
 }    
 

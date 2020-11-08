@@ -43,7 +43,7 @@ $correo=defined('CORREO')?CORREO:'SIN DATO DE CORREO';
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="../../tickets/ticket.css?v=13092020">
+        <link rel="stylesheet" href="../../tickets/ticket.css?v=14092020">
 		
         <title>Impresión de ticket</title>
     </head>
@@ -136,9 +136,9 @@ $correo=defined('CORREO')?CORREO:'SIN DATO DE CORREO';
             
             
         </div>
-		<div class="text-center">
-            <button id="btnPrint" class="hidden-print" onclick="window.print();window.close();">Imprimir</button>
-            <button class="hidden-print" onclick="window.close();">Cerrar</button>
+		<div class="text-center" style="margin: 0 auto; width: 150px;">
+            <button id="btnPrint" class="btn-bootstrap1 hidden-print" onclick="window.print();window.close();">Imprimir</button>
+            <button class="btn-bootstrap2 hidden-print" onclick="window.close();">Cerrar</button>
         </div>
 
         <!-- <script src="../../tickets/ticket.js?v=11012020"></script> -->

@@ -120,8 +120,9 @@
   </div>
   <!-- /.content-wrapper -->
   
- <!-- === MODAL AGREGAR PRODUCTOS ==-->
- 
+ <!-- ============================================================================
+ ========================== MODAL AGREGAR PRODUCTOS ============================
+================================================================================= -->
 <div class="modal fade" id="modalAgregarProducto" data-backdrop="static" data-keyboard="false" tabindex="">
   <div class="modal-dialog modal-lg p-0 my-0">
    
@@ -172,12 +173,12 @@
                       <option value="0" selected>Seleccionar categoría</option>
 
                       <?php
-                        $item=null;
-                        $valor=null;
-                        $categorias=ControladorCategorias::ctrMostrarCategorias($item, $valor);
-                        foreach($categorias as $key=>$value){
-                            echo '<option value="'.$value["id"].'">'.$value["categoria"].'</option>';
-                        }
+                        // $item=null;
+                        // $valor=null;
+                        // $categorias=ControladorCategorias::ctrMostrarCategorias($item, $valor);
+                        // foreach($categorias as $key=>$value){
+                        //     echo '<option value="'.$value["id"].'">'.$value["categoria"].'</option>';
+                        // }
                       ?>
 
                     </select>
@@ -531,7 +532,9 @@
 </div>    <!-- fin del modal -->
 
 
-<!-- ================================ MODAL EDITAR PRODUCTOS ====================-->
+<!-- ===========================================================================================
+  ===================================== MODAL EDITAR PRODUCTOS ================================
+=============================================================================================== -->
  
   <div class="modal fade" id="modalEditarProducto" data-backdrop="static" data-keyboard="false" tabindex="">
   <div class="modal-dialog modal-lg">
@@ -586,12 +589,12 @@
                     <select class="form-control input-lg editarCategoria" name="editarCategoria"  required title="Categoría">
                       <option id="editarCategoria"></option>
                       <?php
-                        $item=null;
-                        $valor=null;
-                        $categorias=ControladorCategorias::ctrMostrarCategorias($item, $valor);
-                        foreach($categorias as $key=>$value){
-                            echo '<option value="'.$value["id"].'">'.$value["categoria"].'</option>';
-                        }
+                        // $item=null;
+                        // $valor=null;
+                        // $categorias=ControladorCategorias::ctrMostrarCategorias($item, $valor);
+                        // foreach($categorias as $key=>$value){
+                        //     echo '<option value="'.$value["id"].'">'.$value["categoria"].'</option>';
+                        // }
                       ?>
                     </select>
                   </div>
