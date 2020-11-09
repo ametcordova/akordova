@@ -6,7 +6,8 @@
    define ('RFC','LOPH630000000');
    define ('TELEFONO', '(961) 252-7221');
    define ('CORREO','hernan.lopez63@outlook.com');
-   define ('IMPRESORA','EC-PM-5890X');
+   //define ('IMPRESORA','EC-PM-5890X');
+   define ('IMPRESORA','POS_58');
    define ('DRIVEBACKUP','e:/respaldo');
    define ('DATABASE','dbmodelo');
    define ('SLOGAN','Donde es un gusto atenderle.');

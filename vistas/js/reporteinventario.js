@@ -29,6 +29,7 @@ $('#botonRep, #botonImp').on('click', function() {
 
   let idNumAlma=$("#almInventario").val();      //id de Almacen Seleccionado
   let idNomAlma=$("#almInventario option:selected" ).text();    //Nombre del almacen Seleccionado
+  idNomAlma = idNomAlma.toLowerCase();
   let idNumFam = $("#familySel").val();     //id de Familia Seleccionado
   let idBoton=$(this).attr('id');
     
@@ -39,7 +40,9 @@ idNumAlma=parseInt(idNumAlma);
         if(idBoton=="botonRep"){
              window.open("extensiones/tcpdf/pdf/reporte_inventario.php?idNomAlma="+idNomAlma+"&idNumFam="+idNumFam, "_blank");
         }else{		//imprimir el inventario en ticket
-             window.open("extensiones/tcpdf/pdf/imprimir_inventario.php?idNomAlma="+idNomAlma+"&idNumFam="+idNumFam, "_blank","top=200,left=500,width=400,height=400");
+             //window.open("extensiones/tcpdf/pdf/imprimir_inventario.php?idNomAlma="+idNomAlma+"&idNumFam="+idNumFam, "_blank","top=200,left=500,width=400,height=400");
+			 window.open("extensiones/tcpdf/pdf/inventario-ticket.php?idNomAlma="+idNomAlma+"&idNumFam="+idNumFam, "_blank","top=200,left=500,width=400,height=400");
+			 //window.open("extensiones/tcpdf/pdf/impticket.php?codigo="+idNotaSalida,"_blank","top=100,left=500,width=350,height=500");
         }    
     }else{
 		$('#mensajerror').text('Seleccione Almacen!!');
