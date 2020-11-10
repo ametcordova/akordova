@@ -1,3 +1,7 @@
+.ticket {
+    width: 54mm;
+    max-width: 54mm;
+}
 
 .both_border {
     border-top: 1px dotted  black;
@@ -6,28 +10,28 @@
 }
 
 th.titledescription {
-    width: 19mm;
-    max-width: 19mm;
+    width: 15mm;
+    max-width: 15mm;
     text-align:left;
 }
 
 th.titlequantity {
-    width: 10mm;
-    max-width: 10mm;
+    width: 9mm;
+    max-width: 9mm;
     word-break: break-all;
 	text-align:left;
 }
 
 th.titleprice {
-    width: 11mm;
-    max-width: 11mm;
+    width: 10mm;
+    max-width: 10mm;
     word-break: break-all;
 	text-align:right;
 }
 
 td.description {
-    width: 56px;
-    max-width: 56px;
+    width: 54px;
+    max-width: 54px;
 }
 
 td.quantity {
@@ -40,8 +44,8 @@ td.quantity {
 td.price {
     width: 20px;
     max-width: 20px;
-    
-	text-align:right;
+    word-break: break-all;
+    text-align:right;
 }
 
 .centered {
@@ -51,17 +55,13 @@ td.price {
     align-content: center;
 }
 
-.ticket {
-    width: 55mm;
-    max-width: 55mm;
-}
-
 td.totales {
     width: 54px;
     max-width: 54px;
     word-break: break-all;
-	text-align:left;
-    font-size: 12px;
+    text-align:left;
+    font-weight: bold;
+    font-size: 11px;
 }
 
 

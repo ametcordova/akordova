@@ -29,14 +29,14 @@ $correo=defined('CORREO')?CORREO:'SIN DATO DE CORREO';
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="../../tickets/inventario.css?v=15092020">
+        <link rel="stylesheet" href="../../tickets/inventario.css?v=16092020">
 		
         <title>Impresión de Inventario</title>
     </head>
     <body>
         <div class="ticket">
 		 <img src="../../tickets/logoticket.png" style="width:90%;" alt="Logo aKordova" />
-            <p class="centered" style="font-family: Arial; font-size:12px;padding-top:-5px"><?php echo $razonsocial;?> 
+            <p class="centered" style="font-family: Arial; font-size:12px;padding-top:-15px"><?php echo $razonsocial;?> 
                 <br><?php echo DIRECCION;?> 
                 <br><strong>RFC:</strong> <?php echo RFC;?> 
                 <br><strong>TEL:</strong> <?php echo TELEFONO;?> 
@@ -64,7 +64,7 @@ $correo=defined('CORREO')?CORREO:'SIN DATO DE CORREO';
                 $cantExist=$totExiste=$granTotal=$sumtotal=$importeExist=0;
                 foreach ($respuestaInventario as $row) {
                     $sumtotal=$row["precio_venta"]*$row["cant"];
-                    $descripcion=trim(substr($row["descripcion"],0,36));
+                    $descripcion=trim(substr($row["descripcion"],0,26));
                     //$sumtotal=$row["precio_venta"];   
                     $cant=$row["cant"];
 

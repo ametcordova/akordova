@@ -83,9 +83,9 @@ class ControladorUsuarios{
 					echo "<script>
 					Swal.fire({
 					 title: 'Error!',
-					 text: 'Usuario o Contraseña incorrecta!',
+					 text: 'Usuario o Contraseña incorrectos!',
 					 icon: 'error',
-					 confirmButtonText: 'Cool'
+					 confirmButtonText: 'Entendido'
 				   });
 				   </script>";
 					

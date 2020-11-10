@@ -42,7 +42,6 @@ idNumAlma=parseInt(idNumAlma);
         }else{		//imprimir el inventario en ticket
              //window.open("extensiones/tcpdf/pdf/imprimir_inventario.php?idNomAlma="+idNomAlma+"&idNumFam="+idNumFam, "_blank","top=200,left=500,width=400,height=400");
 			 window.open("extensiones/tcpdf/pdf/inventario-ticket.php?idNomAlma="+idNomAlma+"&idNumFam="+idNumFam, "_blank","top=200,left=500,width=400,height=400");
-			 //window.open("extensiones/tcpdf/pdf/impticket.php?codigo="+idNotaSalida,"_blank","top=100,left=500,width=350,height=500");
         }    
     }else{
 		$('#mensajerror').text('Seleccione Almacen!!');

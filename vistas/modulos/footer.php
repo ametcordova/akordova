@@ -1,3 +1,7 @@
+<?php
+date_default_timezone_set('America/Mexico_City');
+$yearcurrent=date("Y");
+?>
 <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here demo.js-->
@@ -12,10 +16,10 @@
   <footer class="main-footer">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-    <strong class="badge badge-danger">@</strong><strong class="badge badge-primary">Kórdova</strong> - (961)-248-0768 -  amet.cordova@gmail.com
+    <strong class="badge badge-danger">@</strong><strong class="badge badge-primary">Kórdova</strong> - (961)-248-0768 -  contacto@akordova.com
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2020 <a href="index.php">AdminInV</a>.</strong> Todos Los Derechos Reservados.
+    <strong>Copyright &copy; <?= $yearcurrent ?> <a href="index.php">AdminInV</a>.</strong> Todos Los Derechos Reservados.
   </footer>
 
 </div>
