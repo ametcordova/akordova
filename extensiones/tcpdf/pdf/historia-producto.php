@@ -30,6 +30,7 @@ public $numKardex;
 	$ciudad=defined('CIUDAD')?CIUDAD:'SIN DATO DE CIUDAD';
 	$telefono=defined('TELEFONO')?TELEFONO:'SIN DATO DE TELEFONO';
 	$correo=defined('CORREO')?CORREO:'SIN DATO DE CORREO';
+	$imagen=defined('IMAGEN')?'../../../'.IMAGEN:'../../../config/imagenes/logotipoempresa.png';
 
 	//REQUERIMOS LA CLASE TCPDF
 	require_once('tcpdf_include.php');
@@ -56,7 +57,7 @@ public $numKardex;
 				
 				<tr style="width:485px">
 
-					<td style="width:65px"><img src="../../../config/logotipo.png"></td>
+					<td style="width:65px"><img src="$imagen"></td>
 
 					<td style="background-color:white; width:230px">
 						

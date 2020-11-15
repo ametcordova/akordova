@@ -31,6 +31,7 @@ $colonia=defined('COLONIA')?COLONIA:'SIN DATO DE COLONIA';
 $ciudad=defined('CIUDAD')?CIUDAD:'SIN DATO DE CIUDAD';
 $telefono=defined('TELEFONO')?TELEFONO:'SIN DATO DE TELEFONO';
 $correo=defined('CORREO')?CORREO:'SIN DATO DE CORREO';
+$imagen=defined('IMAGEN')?'../../../'.IMAGEN:'../../../config/imagenes/logotipoempresa.png';
 
 //REQUERIMOS LA CLASE TCPDF
 require_once('tcpdf_include.php');
@@ -52,7 +53,7 @@ $bloque1 = <<<EOF
 		
 		<tr>
 
-			<td style="width:65px"><img src="../../../config/logotipo.png"></td>
+			<td style="width:65px"><img src="$imagen"></td>
 
 			<td style="background-color:white; width:187.5px">
 				

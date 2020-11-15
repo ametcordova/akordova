@@ -35,6 +35,7 @@ public $numKardex;
 	$ciudad=defined('CIUDAD')?CIUDAD:'SIN DATO DE CIUDAD';
 	$telefono=defined('TELEFONO')?TELEFONO:'SIN DATO DE TELEFONO';
 	$correo=defined('CORREO')?CORREO:'SIN DATO DE CORREO';
+	$imagen=defined('IMAGEN')?'../../../'.IMAGEN:'../../../config/imagenes/logotipoempresa.png';
 // Page footer
 
 	//REQUERIMOS LA CLASE TCPDF
@@ -61,7 +62,7 @@ $bloque1 = <<<EOF
 				
 				<tr style="width:800px">
 
-					<td style="width:60px"><img src="../../../config/logotipo.png"></td>
+				<td style="width:60px"><img src="$imagen"></td>
 
 					<td style="background-color:white; width:350px">
 						

@@ -34,7 +34,7 @@ $colonia=defined('COLONIA')?COLONIA:'SIN DATO DE COLONIA';
 $ciudad=defined('CIUDAD')?CIUDAD:'SIN DATO DE CIUDAD';
 $telefono=defined('TELEFONO')?TELEFONO:'SIN DATO DE TELEFONO';
 $correo=defined('CORREO')?CORREO:'SIN DATO DE CORREO';
-
+$imagen=defined('IMAGEN')?'../../../'.IMAGEN:'../../../config/imagenes/logotipoempresa.png';
 ?>
 
 <!DOCTYPE html>
@@ -48,9 +48,9 @@ $correo=defined('CORREO')?CORREO:'SIN DATO DE CORREO';
         <title>Impresión de ticket</title>
     </head>
     <body>
-        <div class="ticket">
-		 <img src="../../tickets/logoticket.png" style="width:90%;" alt="Logo aKordova" />
-            <p class="centered" style="font-family: Arial; font-size:12px;padding-top:-5px"><?php echo $razonsocial;?> 
+        <div class="ticket centered">
+		 <img src=<?php echo $imagen;?> style="width:100px; height:50px" alt="Logotipo" />
+            <p class="centered" style="font-family: Arial; font-size:12px;padding-top:-15px; margin-top:0"><?php echo $razonsocial;?> 
                 <br><?php echo DIRECCION;?> 
                 <br><strong>RFC:</strong> <?php echo RFC;?> 
                 <br><strong>TEL:</strong> <?php echo TELEFONO;?> 
@@ -136,7 +136,10 @@ $correo=defined('CORREO')?CORREO:'SIN DATO DE CORREO';
             
             
         </div>
-		<div class="text-center" style="margin: 0 auto; width: 150px;">
+        <div style="display: block; content:''; clear: both;"></div>
+
+        <div class="text-center" style="margin: 0 auto; width: 150px;">
+        <br>
             <button id="btnPrint" class="btn-bootstrap1 hidden-print" onclick="window.print();window.close();">Imprimir</button>
             <button class="btn-bootstrap2 hidden-print" onclick="window.close();">Cerrar</button>
         </div>

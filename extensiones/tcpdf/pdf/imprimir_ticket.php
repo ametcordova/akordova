@@ -18,6 +18,7 @@ public $codigo;
 
 public function traerImpresionTicket(){
 
+$imagen=defined('IMAGEN')?'../../../'.IMAGEN:'../../../config/imagenes/logotipoempresa.png';    
 //TRAEMOS LA INFORMACIÓN DE LA VENTA
 $itemSalida = "num_salida";
 $numdeSalida = $_GET["codigo"];
