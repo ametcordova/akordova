@@ -25,7 +25,7 @@ UPDATE EMPRESA
 function updateEmpresa(e){
 	e.preventDefault(); //No se activará la acción predeterminada del evento
 	var formData = new FormData($("#formularioAgregarEmpresa")[0]);
-     //for (var pair of formData.entries()){console.log(pair[0]+ ', ' + pair[1]);}
+     for (var pair of formData.entries()){console.log(pair[0]+ ', ' + pair[1]);}
 	 
 	$.ajax({
 		url: "ajax/empresa.ajax.php?op=updateEmpresa",
@@ -34,11 +34,11 @@ function updateEmpresa(e){
 	    contentType: false,
 	    processData: false,
 	    success: function(datos){
-         //console.log(datos);
-            if(datos==""){
+         console.log(datos);
+            if(datos=="ok"){
                Swal.fire({
                   title: "Realizado!!",
-                  text: "Empresa se ha actualizado correctamente",
+                  text: "Empresa se ha actualizado correctamente:"+datos,
                   icon: "success",
                   timer: 2500
                   })  //fin swal
@@ -97,6 +97,17 @@ try{
           }else{
             $('#esnuevo').val(0);
           }
+
+          if(datos.imagen != ""){
+
+				$(".previsualizar").attr("src", datos.imagen);
+
+			}else{
+
+				//$(".previsualizar").attr("src", "vistas/img/usuarios/default/anonymous.png");
+
+			}
+
          console.log("entro1",razonsocial, esnuevo);
       }) 
  }catch(showErrorFetch){    
@@ -157,6 +168,53 @@ function showErrorFetch(err) {
  }
 
 
+ /*=============================================
+SUBIENDO LA FOTO DEL USUARIO
+=============================================*/
+$(".nuevaImagenEmpresa").change(function(){
+
+	var imagen = this.files[0];
+	
+	/*=============================================
+  	VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
+  	=============================================*/
+
+  	if(imagen["type"] != "image/jpeg" && imagen["type"] != "image/png"){
+
+  		$(".nuevaImagenEmpresa").val("");
+            swal.fire({
+				title: "Error al subir la imagen!",
+				text: "¡La imagen debe estar en formato JPG o PNG!",
+				icon: "warning",
+				timer: 3000
+            });
+
+  	}else if(imagen["size"] > 2000000){
+
+  		$(".nuevaImagenEmpresa").val("");
+
+  		 swal.fire({
+		      title: "Error al subir la imagen",
+		      text: "¡La imagen no debe pesar más de 2MB!",
+		      icon: "error",
+		      timer: 3000
+		    });
+
+  	}else{
+
+  		var datosImagen = new FileReader;
+  		datosImagen.readAsDataURL(imagen);
+
+  		$(datosImagen).on("load", function(event){
+
+  			var rutaImagen = event.target.result;
+
+  			$(".previsualizar, .previsualizarEditar").attr("src", rutaImagen);
+
+  		})
+
+  	}
+})
 
 
 init();

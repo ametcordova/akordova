@@ -8,7 +8,8 @@ switch ($_GET["op"]){
 	case 'guardar':
 		if($_SERVER["REQUEST_METHOD"]=="POST" AND isset($_POST["razonsocial"])){
             
-				$tabla = "empresa";
+        $tabla = "empresa";
+        $rutaimagen='config/imagenes/logotipoempresa.png';
 
 				$datos = array("razonsocial"		=> $_POST["razonsocial"],
                         "rfc"				    => strtoupper($_POST["rfc"]),
@@ -24,6 +25,7 @@ switch ($_GET["op"]){
                         "telcontacto"   => $_POST["telcontacto"],
                         "mailcontacto"  => $_POST["mailcontacto"],
                         "iva"     			=> $_POST["ivaempresa"],
+                        "imagen"     		=> $rutaimagen,
                         "impresora"     => $_POST["impresora"],
                         "msjpieticket"  => $_POST["msjpieticket"],
                         "mensajeticket" => $_POST["mensajeticket"],
@@ -33,7 +35,7 @@ switch ($_GET["op"]){
 							   );
                 
                 $rspta = ControladorEmpresa::ctrCrearEmpresa($tabla, $datos);
-                creaArchivo();
+                  creaArchivo($rutaimagen);
                 echo $rspta;
             }
     break;
@@ -45,9 +47,22 @@ switch ($_GET["op"]){
         
     case 'updateEmpresa':
       if($_SERVER["REQUEST_METHOD"]=="POST" AND isset($_POST["razonsocial"])){
-              
+        //echo getcwd() . "\n";  
           $tabla = "empresa";
-  
+
+          $rutaimagen='config/imagenes/logotipoempresa.png';
+        
+          $archivo = $_FILES['nuevaImagenEmpresa']['name'];
+        
+          if (isset($archivo) && $archivo != "") {    //Si el archivo contiene algo y es diferente de vacio
+            
+            if (subir_fichero('../config/imagenes',$archivo)){
+              $rutaimagen='config/imagenes/'.$archivo;   
+
+            };
+            
+          }
+        
           $datos = array("razonsocial"        => trim($_POST["razonsocial"]),
                          "rfc"				        => trim(strtoupper($_POST["rfc"])),
                          "slogan"     	      => trim($_POST["slogan"]),
@@ -62,6 +77,7 @@ switch ($_GET["op"]){
                          "telcontacto"     	  => trim($_POST["telcontacto"]),
                          "mailcontacto"       => trim($_POST["mailcontacto"]),
                          "iva"     			      => $_POST["ivaempresa"],
+                         "imagen"     			  => $rutaimagen,
                          "impresora"          => trim($_POST["impresora"]),
                          "msjpieticket"     	=> trim($_POST["msjpieticket"]),
                          "mensajeticket"     	=> trim($_POST["mensajeticket"]),
@@ -71,19 +87,59 @@ switch ($_GET["op"]){
                    );
                   
                   $rspta = ControladorEmpresa::ctrUpdateEmpresa($tabla, $datos);
-                  creaArchivo();
+                  if($rspta="ok"){
+                    creaArchivo($rutaimagen);
+                  }
+                  
                   echo $rspta;
-              }
-      break;   
+      }
+    break;   
        
         
 }  //FIN DE SWITCH
 
+/**
+ * subir_fichero()
+ *
+ * Sube una imagen al servidor  al directorio especificado teniendo el Atributo 'Name' del campo archivo.
+ *
+ * @param string $directorio_destino Directorio de destino dónde queremos dejar el archivo
+ * @param string $nombre_fichero Atributo 'Name' del campo archivo
+ * @return boolean
+ */
+function subir_fichero($directorio_destino){
+
+    if (is_dir($directorio_destino)){
+
+        $img_file = $_FILES['nuevaImagenEmpresa']['name'];
+        $img_type = $_FILES['nuevaImagenEmpresa']['type'];
+        $temp_name = $_FILES['nuevaImagenEmpresa']['tmp_name'];
+
+        // Si se trata de una imagen   
+        if (((strpos($img_type, "gif") || strpos($img_type, "jpeg") || strpos($img_type, "jpg")) || strpos($img_type, "png"))){
+
+            if (move_uploaded_file($temp_name, $directorio_destino . '/' . $img_file)){
+                return true;
+            }
+
+        }else{
+          echo "error tipo imagen";
+        }
+    }else{
+      echo "error";
+    }
+    //Si llegamos hasta aquí es que algo ha fallado
+    return false;
+    //echo 4;
+}
+
+
 /* CREA ARCHIVO PARAMETROS.PHP */
-function creaArchivo(){
+function creaArchivo($rutaimagen){
   $miArchivo = fopen("../config/parametros.php", "w") or die("No se puede abrir/crear el archivo!");
   //Creamos una variable personalizada
  $citystate = trim($_POST["ciudad"]).', '.trim($_POST["estado"]);
+ 
                     
  $datosphp = "<?php             
    define ('RAZON_SOCIAL', '".$_POST['razonsocial']."');
@@ -100,6 +156,7 @@ function creaArchivo(){
    define ('FOOTER','".trim($_POST["msjpieticket"])."');
    define ('LEYENDA','".trim($_POST["mensajeticket"])."');
    define ('TERMINAL','".trim($_POST["idterminal"])."');
+   define ('IMAGEN','".$rutaimagen."');
  ?>";
                     
    fwrite($miArchivo, $datosphp);

@@ -2,6 +2,11 @@ $("#modalAgregarusuario, #modalEditarUsuario").draggable({
 	 handle: ".modal-header"
 });
 
+// $("#frmEditarusuario").on("submit",function(e){
+// e.preventDefault(); //No se activará la acción predeterminada del evento
+// var formData = new FormData($("#frmEditarusuario")[0]);
+//      for (var pair of formData.entries()){console.log(pair[0]+ ', ' + pair[1]);}
+// })
 
 /*=============================================
 SUBIENDO LA FOTO DEL USUARIO

@@ -209,7 +209,7 @@
               </div>
             </div>
 
-		<div class="form-group">
+		    <div class="form-group">
             <label for="exampleInputFile">Subir Imagen</label>
             <div class="input-group">
                 <div class="custom-file">
@@ -217,7 +217,7 @@
                         <label class="custom-file-label" for="exampleInputFile">Seleccione Archivo</label>
                 </div>
             </div>
-			<img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualizar" width="80px" alt="">
+			        <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualizar" width="80px" alt="">
         </div>
 
 <!--			
@@ -258,7 +258,7 @@
   <div class="modal-dialog">
    
     <div class="modal-content">
-    <form role="form" method="POST" enctype="multipart/form-data">
+    <form role="form" method="POST" enctype="multipart/form-data" id="frmEditarusuario">
       <!-- Modal Header -->
       <div class="modal-header" style="background:#F7FE2E;">
    

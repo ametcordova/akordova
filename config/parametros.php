@@ -6,7 +6,6 @@
    define ('RFC','LOPH630000000');
    define ('TELEFONO', '(961) 252-7221');
    define ('CORREO','hernan.lopez63@outlook.com');
-   //define ('IMPRESORA','EC-PM-5890X');
    define ('IMPRESORA','POS_58');
    define ('DRIVEBACKUP','e:/respaldo');
    define ('DATABASE','dbmodelo');
@@ -14,4 +13,5 @@
    define ('FOOTER','Muchas Gracias por su compra.');
    define ('LEYENDA','Pague aquí CFE, AVON, MEGACABLE, TELMEX, VETV, INFONAVIT, NETFLIX, AMAZON, RECARGAS y muchos más');
    define ('TERMINAL','AK-001');
+   define ('IMAGEN','config/imagenes/logotipoempresa.png');
  ?>

@@ -46,7 +46,10 @@
                     $valor=null;
                     $idUsuarioCaja=ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
                     foreach($idUsuarioCaja as $key=>$value){
-                          echo '<option value="'.$value["id"].'">'.$value["usuario"]." - ".$value["nombre"].'</option>';
+                      //if($value["id"]>1){
+                        echo '<option value="'.$value["id"].'">'.$value["usuario"]." - ".$value["nombre"].'</option>';
+                      //}
+                        
                     }
                   ?>				  
                   </select>			  

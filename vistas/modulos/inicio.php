@@ -27,7 +27,7 @@
       <div class="card">
         <div class="card-body">
 
-		    <img src="config/logotipo.png" style="width:35%; " class="rounded mx-auto d-block" alt="">
+		    <img src=<?php echo IMAGEN ?> style="width:35%; " class="rounded mx-auto d-block" alt="">
 
         </div>
         <!-- /.card-body -->

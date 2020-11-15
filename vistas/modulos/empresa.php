@@ -40,7 +40,7 @@ if($_SESSION["perfil"] == "Administrador" ){
           </div>
         </div>
         <div class="card-body">
-		<form role="form" id="formularioAgregarEmpresa">
+		<form role="form" id="formularioAgregarEmpresa" method="POST" enctype="multipart/form-data">
 
 		  <div class="form-row">
 		   <div class="form-group col-md-6">
@@ -125,13 +125,12 @@ if($_SESSION["perfil"] == "Administrador" ){
 				<label for="exampleInputFile">Subir Imagen</label>
 				<div class="input-group">
 					<div class="custom-file">
-							<input type="file" class="custom-file-input" id="exampleInputFile">
-							<label class="custom-file-label" for="exampleInputFile">Seleccione Archivo</label>
+							<input type="file" class="custom-file-input nuevaImagenEmpresa" id="" name="nuevaImagenEmpresa">
+							<label class="custom-file-label" for="exampleInputFile">Seleccione logotipo</label>
 					</div>
-					<div class="input-group-append">
-							<span class="input-group-text" id="">Subir</span>
-					</div>
+					
 				</div>
+				<img src="config/imagenes/logotipoempresa.png" class="img-thumbnail previsualizar" width="100px" alt="logotipo">
 			</div>	
 
 			<div class="form-group col-md-1">
@@ -141,7 +140,7 @@ if($_SESSION["perfil"] == "Administrador" ){
 
 			<div class="form-group col-md-2">
 			  <label for="printer">Mod. Impresora <span class="text-danger">*</span></label>
-			  <input type="text" class="form-control" name="impresora"  id="impresora" value="" required title="Como aparece en su configuración de impresora" readonly>
+			  <input type="text" class="form-control" name="impresora"  id="impresora" value="" required title="Como aparece en su configuración de impresora">
 			</div>
 
 			<div class="form-group col-md-2">
@@ -184,7 +183,7 @@ if($_SESSION["perfil"] == "Administrador" ){
     </section>
     <!-- /.content -->
   </div>
-  <script defer src="vistas/js/empresa.js"></script>
+  <script defer src="vistas/js/empresa.js?v=01092020"></script>
   <!-- /.content-wrapper -->
 <?php
 }else{

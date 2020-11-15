@@ -33,6 +33,7 @@ $colonia=defined('COLONIA')?COLONIA:'SIN DATO DE COLONIA';
 $ciudad=defined('CIUDAD')?CIUDAD:'SIN DATO DE CIUDAD';
 $telefono=defined('TELEFONO')?TELEFONO:'SIN DATO DE TELEFONO';
 $correo=defined('CORREO')?CORREO:'SIN DATO DE CORREO';
+$imagen=defined('IMAGEN')?'../../../'.IMAGEN:'../../../config/imagenes/logotipoempresa.png';
 
 //TRAEMOS LA INFORMACIÓN 
 $tabla=$_GET["idNumAlma"];
@@ -76,7 +77,7 @@ $pdf->startPageGroup();
 
 $pdf->AddPage();
     
-// ---------------------------------------------------------
+// ---------------------------------------------------------<td style="width:65px"><img src="../../../config/logotipo.png"></td>
 
 $bloque1 = <<<EOF
 
@@ -84,7 +85,7 @@ $bloque1 = <<<EOF
 		
 		<tr>
     
-			<td style="width:65px"><img src="../../../config/logotipo.png"></td>
+			<td style="width:65px"><img src="$imagen"></td>
 
 
             <td style="background-color:white; width:350px">
