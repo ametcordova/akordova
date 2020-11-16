@@ -147,10 +147,11 @@ if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"]=="ok"){
 <!-- AQUI SE VINCULAN LOS ARCHIVOS JS -->
 <script src="vistas/js/plantilla.js"></script> 
 <script src="vistas/js/tablero.js"></script>
-<script defer src="vistas/js/cajas.js?v=04092020"></script>
-<script defer src="vistas/js/header.js?v=04092020"></script>
-<script defer src="vistas/js/salidas.js?v=04092020"></script>
-<script defer src="vistas/js/funciones.js?v=04092020"></script>
+<script defer src="vistas/js/cajas.js?v=05092020"></script>
+<script defer src="vistas/js/header.js?v=05092020"></script>
+<script defer src="vistas/js/salidas.js?v=05092020"></script>
+<script defer src="vistas/js/funciones.js?v=05092020"></script>
+
 <!--<script src="vistas/js/scriptxvox.js"></script> -->
 <!--<script src="vistas/js/app.js"></script> -->
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>-->

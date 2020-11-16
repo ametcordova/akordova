@@ -72,6 +72,7 @@ $yearcurrent=date("Y");
 
 <script src="extensiones/annyang/annyang.min.js"></script>
 
+<script defer src="extensiones/js-cookie-master/js.cookie.min.js"></script>
 <!-- development version, includes helpful console warnings 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
 

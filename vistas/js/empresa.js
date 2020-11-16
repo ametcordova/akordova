@@ -25,7 +25,7 @@ UPDATE EMPRESA
 function updateEmpresa(e){
 	e.preventDefault(); //No se activará la acción predeterminada del evento
 	var formData = new FormData($("#formularioAgregarEmpresa")[0]);
-     for (var pair of formData.entries()){console.log(pair[0]+ ', ' + pair[1]);}
+     //for (var pair of formData.entries()){console.log(pair[0]+ ', ' + pair[1]);}
 	 
 	$.ajax({
 		url: "ajax/empresa.ajax.php?op=updateEmpresa",

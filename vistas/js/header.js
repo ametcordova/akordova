@@ -1,8 +1,18 @@
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+
+var iddecaja = "id_caja";
+var numdecaja=$("#numcaja").val();
+var campofecha="fecha_salida";
+var cerrado=0;
+var datecurrent=moment().format('YYYY-MM-DD');
+
 /* ================================================
 MODULO PARA MOSTRAR IMPORTES POR CONCEPTOS, EN LA 
 VENTANA DE CAJA APERTURADA.
 ==================================================*/
 $("#modalcajaventa").click(function(ev) {
+
     ev.preventDefault();
     var target = $(this).attr("href");
     console.log("entra:",target)
@@ -12,45 +22,40 @@ $("#modalcajaventa").click(function(ev) {
 
     //$('#cajaAbierta').on('show.bs.modal', function (e) {})
 
-    let iddecaja = "id_caja";
-    let numdecaja=$("#numcaja").val();
-    let campofecha="fecha_salida";
-    let cerrado=0;
-    let datecurrent=moment().format('YYYY-MM-DD');
-    
-    generar(iddecaja,numdecaja,campofecha,cerrado,datecurrent);
+    //generar(iddecaja,numdecaja,campofecha,cerrado,datecurrent);
 
-});
+
 
 /* ======= ENCADENAR SECUENCIALMENTE LLAMADAS A FUNCIONES ========*/
-async function generar(iddecaja,numdecaja,campofecha,cerrado,datecurrent){
-    try{    
-        await traerventas(iddecaja,numdecaja,campofecha,cerrado,datecurrent);
-        await traerenvases(iddecaja,numdecaja,campofecha,cerrado,datecurrent);
-        await traerservicios(iddecaja,numdecaja,campofecha,cerrado,datecurrent);
-        await traerotros(iddecaja,numdecaja,campofecha,cerrado,datecurrent);
-        await traerventacredito(iddecaja,numdecaja,campofecha,cerrado,datecurrent);
-        await traeringresosegresos(iddecaja,numdecaja,cerrado);
-        await traerimportecajachica(iddecaja,numdecaja,cerrado,datecurrent);
-        //setTimeout(sumartotalcaja,600);    
-        await sumartotalcaja();
-    } catch(err){
-        console.log(err);
-    }    
-};
+//function generar(iddecaja,numdecaja,campofecha,cerrado,datecurrent){
+//    try{    
+        //traerventas(iddecaja,numdecaja,campofecha,cerrado,datecurrent);
+        //traerenvases(iddecaja,numdecaja,campofecha,cerrado,datecurrent);
+        //traerservicios(iddecaja,numdecaja,campofecha,cerrado,datecurrent);
+        //traerotros(iddecaja,numdecaja,campofecha,cerrado,datecurrent);
+        //traerventacredito(numdecaja,campofecha,cerrado,datecurrent);
+        //setTimeout(traeringresosegresos(iddecaja,numdecaja,cerrado),1000);
+        //traerimportecajachica(iddecaja,numdecaja,cerrado,datecurrent);
+        //setTimeout(sumartotalcaja,1200); 
+//sumartotalcaja();
+    //} catch(err){
+     //   console.log(err);
+    //}    
+//};
 
 
 /*==== CONSULTA DE VENTAS ======== */
+traerventas(iddecaja,numdecaja,campofecha,cerrado,datecurrent);
 async function traerventas(iddecaja,numdecaja,campofecha,cerrado,datecurrent){
-    let data = new FormData();
-    data.append("fechasalida", campofecha);
-    data.append("fechaactual", datecurrent);
-    data.append("cerrado", cerrado);
-    data.append("numcaja", numdecaja);
+    let data1 = new FormData();
+    data1.append("fechasalida", campofecha);
+    data1.append("fechaactual", datecurrent);
+    data1.append("cerrado", cerrado);
+    data1.append("numcaja", numdecaja);
     try{
-        await fetch('ajax/salidas.ajax.php?op=traertotalventas', {
+        await fetch('ajax/vercaja.ajax.php?op=traertotalventas', {
             method: 'POST',
-            body: data
+            body: data1
         })
          .then(respuesta=>respuesta.json())
          .then(datos=>{
@@ -66,18 +71,19 @@ async function traerventas(iddecaja,numdecaja,campofecha,cerrado,datecurrent){
    }    
 }
 
-/*==== CONSULTA VENTAS DE ENVASES ======== */   
+/*==== CONSULTA VENTAS DE ENVASES ======== */ 
+traerenvases(iddecaja,numdecaja,campofecha,cerrado,datecurrent);  
 async function traerenvases(iddecaja,numdecaja,campofecha,cerrado,datecurrent){
-let data = new FormData();
-data.append("fechasalida", campofecha);
-data.append("fechaactual", datecurrent);
-data.append("cerrado", cerrado);
-data.append("numcaja", numdecaja);
+let data2 = new FormData();
+data2.append("fechasalida", campofecha);
+data2.append("fechaactual", datecurrent);
+data2.append("cerrado", cerrado);
+data2.append("numcaja", numdecaja);
 
 try{
-    await fetch('ajax/salidas.ajax.php?op=traertotalenvases', {
+    await fetch('ajax/vercaja.ajax.php?op=traertotalenvases', {
       method: 'POST',
-      body: data
+      body: data2
     })
     .then(respuesta=>respuesta.json())
     .then(datos=>{
@@ -93,20 +99,21 @@ try{
 }
 
 /*==== CONSULTA VENTAS DE SERVICIOS ======== */   
+traerservicios(iddecaja,numdecaja,campofecha,cerrado,datecurrent);
 async function traerservicios(iddecaja,numdecaja,campofecha,cerrado,datecurrent){
-let data = new FormData();
-data.append("fechasalida", campofecha);
-data.append("fechaactual", datecurrent);
-data.append("cerrado", cerrado);
-data.append("numcaja", numdecaja);
+let data3 = new FormData();
+data3.append("fechasalida", campofecha);
+data3.append("fechaactual", datecurrent);
+data3.append("cerrado", cerrado);
+data3.append("numcaja", numdecaja);
     try{
-        await fetch('ajax/salidas.ajax.php?op=traertotalservicios', {
+        await fetch('ajax/vercaja.ajax.php?op=traertotalservicios', {
             method: 'POST',
-            body: data
+            body: data3
         })
          .then(respuesta=>respuesta.json())
          .then(datos=>{
-            //console.log(datos);
+            console.log(datos);
             totalservicios=datos.total==null?0:datos.total;
             totalservicios=new Intl.NumberFormat('en', {style: 'currency',currency: 'USD',currencySign: 'accounting',}).format((totalservicios));
             $('#totalservicios').html(totalservicios);
@@ -118,20 +125,21 @@ data.append("numcaja", numdecaja);
 }        
 
 /*==== CONSULTA VENTAS DE ABARROTES ======== */   
+traerotros(iddecaja,numdecaja,campofecha,cerrado,datecurrent);
 async function traerotros(iddecaja,numdecaja,campofecha,cerrado,datecurrent){
-    let data = new FormData();
-    data.append("fechasalida", campofecha);
-    data.append("fechaactual", datecurrent);
-    data.append("cerrado", cerrado);
-    data.append("numcaja", numdecaja);
+    let data4 = new FormData();
+    data4.append("fechasalida", campofecha);
+    data4.append("fechaactual", datecurrent);
+    data4.append("cerrado", cerrado);
+    data4.append("numcaja", numdecaja);
         try{
-            await fetch('ajax/salidas.ajax.php?op=traertotalotros', {
+            await fetch('ajax/vercaja.ajax.php?op=traertotalotros', {
                 method: 'POST',
-                body: data
+                body: data4
             })
              .then(respuesta=>respuesta.json())
              .then(datos=>{
-                //console.log(datos);
+                console.log(datos);
                 totalabasinpromo=datos.sinpromo==null?0:parseFloat(datos.sinpromo);
                 totalabaconpromo=datos.promo==null?0:parseFloat(datos.promo);
                 totalotros=new Intl.NumberFormat('en', {style: 'currency',currency: 'USD',currencySign: 'accounting',}).format((totalabasinpromo+totalabaconpromo));
@@ -142,49 +150,86 @@ async function traerotros(iddecaja,numdecaja,campofecha,cerrado,datecurrent){
         }catch(showErrorFetch){    
         }    
 }        
-    
-/*==== CONSULTA VENTAS A CREDITO ======== */   
-async function traerventacredito(iddecaja,numdecaja,campofecha,cerrado,datecurrent){
-let data = new FormData();
-data.append("fechasalida", campofecha);
-data.append("fechaactual", datecurrent);
-data.append("cerrado", cerrado);
-data.append("numcaja", numdecaja);
+
+/* ====================================================== */
+// function traerventacredito(iddecaja,numdecaja,campofecha,cerrado,datecurrent){
+//     axios.post('ajax/vercaja.ajax.php?op=traertotalacredito', {
+//         params: {
+//           fechasalida: campofecha,
+//           fechaactual: datecurrent,
+//           cerrado: cerrado,
+//           numcaja: numdecaja
+//         }
+//     })
+
+//     .then((response) => {
+//         if(response.status==200) {
+//             console.log(response)
+//             console.log(response.data.promo)
+//             console.log(response.data.sinpromo)
+//             totcredsinpromo=response.data.promo==null?0:parseFloat(response.data.sinpromo);
+//             totcredconpromo=response.data.sinpromo==null?0:parseFloat(response.data.promo);
+//             totalacredito=new Intl.NumberFormat('en', {style: 'currency',currency: 'USD',currencySign: 'accounting',}).format((totcredsinpromo+totcredconpromo));
+//             $('#totalacredito').html(totalacredito);
+//             $('#totalacredito').attr('data-creditos',(totcredsinpromo+totcredconpromo));
+
+//         }else{
+//             console.log(response);    
+//         }
+        
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+
+// }
+
+
+/*==== CONSULTA VENTAS A CREDITO ======== */  
+traerventacredito(numdecaja,campofecha,cerrado,datecurrent);
+async function traerventacredito(numdecaja,campofecha,cerrado,datecurrent){
+let data5 = new FormData();
+data5.append("fechasalida", campofecha);
+data5.append("fechaactual", datecurrent);
+data5.append("cerrado", cerrado);
+data5.append("numcaja", numdecaja);
+for (var pair of data5.entries()){console.log(pair[0]+ ', ' + pair[1]);}
     try{
-       await fetch('ajax/salidas.ajax.php?op=traertotalacredito', {
+       await fetch('ajax/vercaja.ajax.php?op=traertotalacredito',{
             method: 'POST',
-            body: data
+            body: data5
         })
          .then(respuesta=>respuesta.json())
          .then(datos=>{
             //console.log(datos);
+            //console.log(datos.sinpromo);
             totcredsinpromo=datos.sinpromo==null?0:parseFloat(datos.sinpromo);
             totcredconpromo=datos.promo==null?0:parseFloat(datos.promo);
             totalacredito=new Intl.NumberFormat('en', {style: 'currency',currency: 'USD',currencySign: 'accounting',}).format((totcredsinpromo+totcredconpromo));
             $('#totalacredito').html(totalacredito);
             $('#totalacredito').attr('data-creditos',(totcredsinpromo+totcredconpromo));
-            //console.log("entro4");
           }) 
     }catch(showErrorFetch){    
     }    
 }
 
 /*==== CONSULTA DE INGRESOS E EGRESOS ======== */
+traeringresosegresos(iddecaja,numdecaja,cerrado);
 async function traeringresosegresos(iddecaja,numdecaja,cerrado){
-    let datos = new FormData();
-	datos.append("item", iddecaja);
-    datos.append("iddeCaja", numdecaja);
-    datos.append("cerrado", cerrado);
+    let datos6 = new FormData();
+	datos6.append("item", iddecaja);
+    datos6.append("iddeCaja", numdecaja);
+    datos6.append("cerrado", cerrado);
     try{
-        await fetch('ajax/control-presupuesto.ajax.php?op=ingresoegreso', {
+        await fetch('ajax/vercaja.ajax.php?op=ingresoegreso', {
             method: 'POST',
-            body: datos
+            body: datos6
         })
         .then(respuesta=>respuesta.json())
         .then(datos=>{
-            //console.log(datos.monto_ingreso);
-            totalingreso=datos.monto_ingreso==null?0:datos.monto_ingreso;
-            totalegreso=datos.monto_egreso==null?0:datos.monto_egreso;
+            console.log(datos);
+            totalingreso=datos==null?0:datos.monto_ingreso;
+            totalegreso=datos==null?0:datos.monto_egreso;
             $('#totalingreso').attr('data-ingreso',totalingreso);
             $('#totalegreso').attr('data-egreso',totalegreso);
             totalingreso=new Intl.NumberFormat('en',{style:'currency',currency:'USD',currencySign: 'accounting',}).format(totalingreso);
@@ -199,8 +244,8 @@ async function traeringresosegresos(iddecaja,numdecaja,cerrado){
     }    
 }            
 
-/*==== CONSULTA DE INGRESOS E EGRESOS ======== */
-async function traerimportecajachica(iddecaja,numdecaja,cerrado,datecurrent){
+/*==== CONSULTA CAJA CHICA ======== */
+function traerimportecajachica(iddecaja,numdecaja,cerrado,datecurrent){
     //console.log("entra cajachica:",iddecaja,numdecaja,cerrado,datecurrent);
     let datos = new FormData();
 	datos.append("item", iddecaja);
@@ -208,14 +253,14 @@ async function traerimportecajachica(iddecaja,numdecaja,cerrado,datecurrent){
     datos.append("cerrado", cerrado);
     datos.append("fechaactual", datecurrent);
     try{
-        await fetch('ajax/control-presupuesto.ajax.php?op=importecajachica', {
+        fetch('ajax/vercaja.ajax.php?op=importecajachica', {
             method: 'POST',
             body: datos
         })
         .then(respuesta=>respuesta.json())
         .then(datos=>{
-            //console.log(datos.cajachica);
-            totalcajachica=datos.cajachica==null?0:datos.cajachica;
+            //console.log(datos);
+            totalcajachica=(datos==null)?0:datos.cajachica;
             //$('#totalcajachica').attr('data-ingreso',totalcajachica);
             totalcajachica=new Intl.NumberFormat('en',{style:'currency',currency:'USD',currencySign: 'accounting',}).format(totalcajachica);
             $('#totalcajachica').html(totalcajachica);
@@ -236,12 +281,14 @@ function sumartotalcaja(){
 
 	$(".idforsuma").each(function(index, value) {
         //console.log(index, value);
-       // console.log("evalua: ",$(this).data());
+        //console.log("evalua: ",$(this).data());
         data = $(this).data();
         for(var i in data){
-          //console.log("itera:",i);
+          //console.log("itera:",i,"imprte:",data[i]);
             if(i==="egreso"){
-               totalefectivo-=parseFloat(data[i]);    
+                if(parseFloat(data[i])>0){
+                    totalefectivo-=parseFloat(data[i]);    
+                }
             }else{
                totalefectivo+=parseFloat(data[i]) || 0;
             }
@@ -264,15 +311,26 @@ function showErrorFetch(err) {
   }
   
 
-$("#cajaAbierta").on('hidden.bs.modal', ()=> {
-    //console.log("removedata");
-    $( "#databox" ).removeData();
-    $( "#databox" ).removeAttr();
-    //console.log("ingreso:", $('#totalingreso' ).data( 'ingreso' ) );
-});
+// using jQuery
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+//var csrftoken = getCookie('csrftoken');
+//console.log(csrftoken);
 
 /*
-
 $('#cajaactiva').on('click', function(ev) {
     //window.location = "inicio";
     
@@ -287,3 +345,12 @@ $('#cajaAbierta').on('show.bs.modal', function (e) {
 })
 
 */
+setTimeout(sumartotalcaja,1200); 
+});
+
+$("#cajaAbierta").on('hidden.bs.modal', ()=> {
+    //console.log("removedata");
+    $( "#databox" ).removeData();
+    $( "#databox" ).removeAttr();
+    //console.log("ingreso:", $('#totalingreso' ).data( 'ingreso' ) );
+});

@@ -1,8 +1,8 @@
 <?php
 //require __DIR__ . '/autoload.php'; 
-use Mike42\Escpos\Printer;
-use Mike42\Escpos\EscposImage;
-use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
+//use Mike42\Escpos\Printer;
+//use Mike42\Escpos\EscposImage;
+//use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
 
 class ControladorSalidas{
 
@@ -150,7 +150,6 @@ static public function ctrProdEliminar($tabla, $item, $valor, $idUsuario){
  }	
 }
 
-    
 /*=============================================
 VALIDA QUE NUMERO DE DOCTO NO SE REPITA
 =============================================*/
@@ -236,7 +235,12 @@ static public function ctrSumaTotalVentas($tabla, $item, $valor,$cerrado, $fecha
 
 	$respuesta = ModeloSalidas::mdlSumaTotalVentas($tabla, $item, $valor, $cerrado, $fechacutvta);
 
-	return $respuesta;
+	if($respuesta){
+		return $respuesta;
+	}else{
+		return 0;
+	}	
+	
 
 }     
 /*=============================================
@@ -246,7 +250,11 @@ static public function ctrSumTotVtasEnv($tabla, $item, $valor,$cerrado, $fechacu
 
 	$respuesta = ModeloSalidas::mdlSumTotVtasEnv($tabla, $item, $valor,$cerrado, $fechacutvta);
 
-	return $respuesta;
+	if($respuesta){
+		return $respuesta;
+	}else{
+		return 0;
+	}	
 
 }     
 /*=============================================
@@ -256,7 +264,12 @@ static public function ctrSumTotVtasServ($tabla, $item, $valor,$cerrado, $fechac
 
 	$respuesta = ModeloSalidas::mdlSumTotVtasServ($tabla, $item, $valor,$cerrado, $fechacutvta);
 
-	return $respuesta;
+	if($respuesta){
+		return $respuesta;
+	}else{
+		return 0;
+	}	
+	
 
 }     
 /*=============================================
@@ -266,7 +279,12 @@ static public function ctrSumTotVtasOtros($tabla, $item, $valor,$cerrado, $fecha
 
 	$respuesta = ModeloSalidas::mdlSumTotVtasOtros($tabla, $item, $valor,$cerrado, $fechacutvta);
 
-	return $respuesta;
+	if($respuesta){
+		return $respuesta;
+	}else{
+		return 0;
+	}	
+	
 
 }     
 
@@ -277,7 +295,11 @@ static public function ctrSumTotVtasCred($tabla, $item, $valor,$cerrado, $fechac
 
 	$respuesta = ModeloSalidas::mdlSumTotVtasCred($tabla, $item, $valor, $cerrado, $fechacutvta);
 
-	return $respuesta;
+	if($respuesta){
+		return $respuesta;
+	}else{
+		return 0;
+	}	
 
 }     
 
@@ -412,21 +434,3 @@ function filtrado($datos){
     return $datos;
 }   
 
-/*
-var varjs="'.$numSalidaAlmacen.'";		//convierte variable PHP a JS
-swal({
-title: "Guardado! Ticket No. "+varjs,
-text: "Venta a sido guardado correctamente!",
-icon: "vistas/img/logoaviso.png",
-buttons: ["Cerrar", "Imprimir Ticket"],
-timer: 8000,
-})
-.then((aceptado) => {
-if (aceptado) {
-window.open("extensiones/tcpdf/pdf/imprimir_ticket.php?codigo="+varjs, "_blank","top=200,left=500,width=400,height=400");
-window.location = "salidas";
-}else{
-window.location = "salidas";
-}
-}); 
-*/

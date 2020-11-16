@@ -137,7 +137,7 @@ function subir_fichero($directorio_destino){
 /* CREA ARCHIVO PARAMETROS.PHP */
 function creaArchivo($rutaimagen){
   $miArchivo = fopen("../config/parametros.php", "w") or die("No se puede abrir/crear el archivo!");
-  //Creamos una variable personalizada
+  //Creamos una variable personalizada  define ('DATABASE','".trim($_POST["namedatabase"])."');
  $citystate = trim($_POST["ciudad"]).', '.trim($_POST["estado"]);
  
                     
@@ -151,7 +151,6 @@ function creaArchivo($rutaimagen){
    define ('CORREO','".trim($_POST["mailempresa"])."');
    define ('IMPRESORA','".trim($_POST["impresora"])."');
    define ('DRIVEBACKUP','".trim($_POST["rutarespaldo"])."');
-   define ('DATABASE','".trim($_POST["namedatabase"])."');
    define ('SLOGAN','".trim($_POST["slogan"])."');
    define ('FOOTER','".trim($_POST["msjpieticket"])."');
    define ('LEYENDA','".trim($_POST["mensajeticket"])."');

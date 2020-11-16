@@ -116,37 +116,4 @@ switch ($_GET["op"]){
      };
      break;
 
-     case 'ingresoegreso':
-        if(isset($_POST["item"])){
-            $item =$_POST["item"] ;
-            $valor = $_POST["iddeCaja"];
-            $cerrado = $_POST["cerrado"];
-
-            $respuesta = ControladorPresupuesto::ctringresoegreso($item, $valor, $cerrado);
-
-			if($respuesta==null){
-				echo json_encode(null);
-			}else{
-				echo json_encode($respuesta);
-			}
-        };
- 	break;
-
-     case 'importecajachica':
-        if(isset($_POST["item"])){
-            $item =$_POST["item"] ;
-            $valor = $_POST["iddeCaja"];
-            $cerrado = $_POST["cerrado"];
-            $fecha_actual = $_POST["fechaactual"];
-
-            $respuesta = ControladorPresupuesto::ctrImporteCajaChica($item, $valor, $cerrado, $fecha_actual);
-
-			if($respuesta==null){
-				echo json_encode(null);
-			}else{
-				echo json_encode($respuesta);
-			}
-        };
- 	break;
-     
 }  //FIN DE SWITCH  

@@ -655,7 +655,6 @@ static public function mdlSumTotVtasServ($tabla, $item, $valor, $cerrado, $fecha
 
 	return $stmt -> fetch();
 
-
 	$stmt = null;
 
 }         
@@ -688,13 +687,13 @@ static public function mdlSumTotVtasOtros($tabla, $item, $valor, $cerrado, $fech
 static public function mdlSumTotVtasCred($tabla, $item, $valor, $cerrado, $fechacutvta){	
 
     if($fechacutvta!=null){
-		$stmt = Conexion::conectar()->prepare("SELECT h.`fecha_salida`, SUM(IF(h.`es_promo` = 0, h.`cantidad`*h.`precio_venta`,0)) AS sinpromo, 
-		SUM(IF(h.`es_promo` = 1, h.`precio_venta`,0)) AS promo, h.cerrado FROM $tabla h INNER JOIN productos p ON h.id_producto=p.id 
-		WHERE h.$item='".$fechacutvta."' and h.id_caja=$valor and h.cerrado=$cerrado AND h.id_tipomov=3");
+		$stmt = Conexion::conectar()->prepare("SELECT SUM(IF(h.es_promo = 0, h.cantidad*h.precio_venta,0)) AS sinpromo, 
+		SUM(IF(h.es_promo = 1, h.precio_venta,0)) AS promo FROM $tabla h INNER JOIN productos p ON h.id_producto=p.id 
+		WHERE h.$item='".$fechacutvta."' and h.id_caja='".$valor."' and h.cerrado='".$cerrado."' AND h.id_tipomov=3");
     }else{
-		$stmt = Conexion::conectar()->prepare("SELECT h.`fecha_salida`, SUM(IF(h.`es_promo` = 0, h.`cantidad`*h.`precio_venta`,0)) AS sinpromo, 
-		SUM(IF(h.`es_promo` = 1, h.`precio_venta`,0)) AS promo FROM $tabla h INNER JOIN productos p ON h.id_producto=p.id 
-		WHERE h.$item=curdate() and h.id_caja=$valor and h.cerrado=$cerrado AND h.id_tipomov=3");
+		$stmt = Conexion::conectar()->prepare("SELECT h.fecha_salida, SUM(IF(h.es_promo = 0, h.cantidad*h.precio_venta,0)) AS sinpromo, 
+		SUM(IF(h.es_promo = 1, h.precio_venta,0)) AS promo FROM $tabla h INNER JOIN productos p ON h.id_producto=p.id 
+		WHERE h.$item=curdate() and h.id_caja='".$valor."' and h.cerrado='".$cerrado."' AND h.id_tipomov=3");
     }
         //$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
     
@@ -718,8 +717,6 @@ static public function mdlCantTotalVentas($tabla, $item, $valor){
 
 	return $stmt -> fetch();
 
-	$stmt -> close();
-
 	$stmt = null;
 
 }         
@@ -735,7 +732,6 @@ static public function mdlVtaUlt7Dias($tabla, $item, $valor){
 
 		return $stmt -> fetchAll();
 
-		$stmt -> close();
 
 		$stmt = null;
 
@@ -753,7 +749,6 @@ static public function mdlComprasUlt7Dias($tabla, $item, $valor){
 
 		return $stmt -> fetchAll();
 
-		$stmt -> close();
 
 		$stmt = null;
 
@@ -770,8 +765,6 @@ static public function mdlVtaUlt12Meses($tabla, $item, $valor){
 		$stmt -> execute();
 
 		return $stmt -> fetchAll();
-
-		$stmt -> close();
 
 		$stmt = null;
 
@@ -854,7 +847,6 @@ static public function mdlTotalingresoegreso($item, $valor, $cerrado, $id_fecha)
 		
 			return $stmt -> fetch();
 
-		$stmt -> close();
 
 		$stmt = null;
 	}else{
@@ -870,7 +862,6 @@ static public function mdlTotalingresoegreso($item, $valor, $cerrado, $id_fecha)
 		
 			return $stmt -> fetch();
 
-		//$stmt -> close();
 
 		$stmt = null;
 	}

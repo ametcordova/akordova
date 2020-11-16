@@ -58,7 +58,13 @@ static public function ctrEliminar($tabla, $item, $valor){
 =============================================*/
 static public function ctringresoegreso($item, $idDeCaja, $cerrado){
 
-	return $respuesta = ModeloIngreso::mdlingresoegreso($item, $idDeCaja, $cerrado);
+	$respuesta = ModeloIngreso::mdlingresoegreso($item, $idDeCaja, $cerrado);
+
+	if($respuesta){
+		return $respuesta;
+	}else{
+		return 0;
+	}	
 
 }
 
@@ -68,7 +74,14 @@ static public function ctringresoegreso($item, $idDeCaja, $cerrado){
 =============================================*/
 static public function ctrImporteCajaChica($item, $idDeCaja, $cerrado, $fecha_actual){
 	$tabla="cortes";
-	return $respuesta = ModeloIngreso::mdlImporteCajaChica($tabla, $item, $idDeCaja, $cerrado, $fecha_actual);
+	
+	$respuesta = ModeloIngreso::mdlImporteCajaChica($tabla, $item, $idDeCaja, $cerrado, $fecha_actual);
+
+	if($respuesta){
+		return $respuesta;
+	}else{
+		return 0;
+	}	
 
 }
 
