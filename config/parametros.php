@@ -13,5 +13,5 @@
    define ('FOOTER','Muchas Gracias por su compra.');
    define ('LEYENDA','Pague aquí CFE, AVON, MEGACABLE, TELMEX, VETV, INFONAVIT, NETFLIX, AMAZON, RECARGAS y muchos más');
    define ('TERMINAL','AK-001');
-   define ('IMAGEN','config/imagenes/logotipoempresa.png');
+   define ('IMAGEN','config/imagenes/logotipo.png');
  ?>

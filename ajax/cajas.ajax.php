@@ -136,9 +136,10 @@ switch ($_GET["op"]){
     case 'listarcaja':
 		$tabla="usuarios";
 		$usuario=$_SESSION['id'];
-		$module="cajaventas";
+        $module="cajaventas";
+        $campo="catalogo";
 		
-		$acceso=accesomodulo($tabla, $usuario, $module);
+		$acceso=accesomodulo($tabla, $usuario, $module, $campo);
 
 		$item = null;
     	$valor = null;

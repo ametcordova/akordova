@@ -45,7 +45,7 @@ class ControladorUsuarios{
 						$campo="id_caja";
 						$valor=$respuesta["idcaja"];
 						$resp=ModeloCajas::mdlChecarCaja($tablaCaja,$campo,$valor);
-						 if ($resp["id_caja"]=$respuesta["idcaja"]){
+						 if ($resp["id_caja"]==$respuesta["idcaja"]){
 							$_SESSION["abierta"]="ok";
 						 }
 						

@@ -388,6 +388,7 @@ static Public function MdlActualizaProductos($tabla, $valor1, $valor2, $idUsuari
 	REPORTE NOTA DE SALIDAS
 =============================================*/	
 static Public function MdlSalidaAlm($tabla, $campo, $valor){
+	$stmt="";
   try{   
      if($campo !=null){    
          
@@ -443,7 +444,6 @@ try{
 } catch (Exception $e) {
 	echo "Failed: " . $e->getMessage();
 }	
-	   $stmt->close();
 	   $stmt=null;
 }
 
@@ -950,6 +950,61 @@ static Public function MdlImprimirCancelacion($tabla, $campo, $valor){
 		  $stmt=null;
 
 	  }    
+
+
+/*======================================================
+	SUMAR EL TOTAL DE VENTAS SIN ENVASES Y SIN SERVICIOS
+========================================================*/
+//$tabla="hist_salidas"; $item=$_POST["fechasalida"]; $fechacutvta=null; $valor=$_POST["numcaja"]; $cerrado=$_POST["cerrado"];
+
+static public function mdlSumaTotales($tabla, $item, $valor, $cerrado, $fechacutvta){	
+	$campo="id_caja";
+	$rsp=array();
+	
+	$ventas=self::mdlSumaTotalVentas($tabla, $item, $valor, $cerrado, $fechacutvta);
+	$ventasgral=$ventas["sinpromo"]>0?$ventas["sinpromo"]:0;
+	$ventaspromo=$ventas["promo"]>0?$ventas["promo"]:0;
+	$sumaventasgral=$ventasgral+$ventaspromo;
+	//array_push($rsp, "ventasgral", $sumaventasgral);
+	$rsp["ventasgral"]=$sumaventasgral; // Se crea la key 
+
+	$vtaEnv = self::mdlSumTotVtasEnv($tabla, $item, $valor, $cerrado,$fechacutvta);
+	$ventasenvases=$vtaEnv["total"]>0?$vtaEnv["total"]:0;
+	//array_push($rsp, "ventasenvases", $ventasenvases);
+	$rsp["ventasenvases"]=$ventasenvases; // Se crea la key 
+
+	$vtaServ = self::mdlSumTotVtasServ($tabla, $item, $valor, $cerrado,$fechacutvta);
+	$ventasservicios=$vtaServ["total"]>0?$vtaServ["total"]:0;
+	//array_push($rsp, "ventaservicios", $ventasservicios);
+	$rsp["ventaservicios"]=$ventasservicios; // Se crea la key 
+					 
+	$ventasaba=self::mdlSumTotVtasOtros($tabla, $item, $valor, $cerrado,$fechacutvta);
+	$ventasgralaba=$ventasaba["sinpromo"]>0?$ventasaba["sinpromo"]:0;
+	$ventaspromoaba=$ventasaba["promo"]>0?$ventasaba["promo"]:0;
+	$ventasabarrotes=$ventasgralaba+$ventaspromoaba;
+	//array_push($rsp, "ventasabarrotes", $ventasabarrotes);
+	$rsp["ventasabarrotes"]=$ventasabarrotes; // Se crea la key 
+
+	$vtaCred = self::mdlSumTotVtasCred($tabla, $item, $valor, $cerrado,$fechacutvta);
+	$ventascredito=$vtaCred["sinpromo"]+$vtaCred["promo"]>0?$vtaCred["sinpromo"]+$vtaCred["promo"]:0;
+	//array_push($rsp, "ventascredito", $ventascredito);
+	$rsp["ventascredito"]=$ventascredito; // Se crea la key 
+
+	$totingyegr=self::mdlTotalingresoegreso($campo, $valor, $cerrado, $fechacutvta);
+	$ingresodia=$totingyegr["monto_ingreso"]>0?$totingyegr["monto_ingreso"]:0;
+	//array_push($rsp, "ingresodia", $ingresodia);
+	$rsp["ingresodia"]=$ingresodia; // Se crea la key 
+	$egresodia=$totingyegr["monto_egreso"]>0?$totingyegr["monto_egreso"]:0;
+	//array_push($rsp, "egresodia", $egresodia);
+	$rsp["egresodia"]=$egresodia; // Se crea la key 
+
+	$totVentaDia=$ventasgral+$ventaspromo+$ventasenvases+$ventasservicios+$ventasgralaba+$ventaspromoaba+$ventascredito;
+	//array_push($rsp, "totalventadia", $totVentaDia);
+	$rsp["totalventadia"]=$totVentaDia; // Se crea la key 
+
+	return $rsp;
+    
+} 	  
 
 }       //fin de la clase
 

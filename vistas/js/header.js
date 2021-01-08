@@ -11,18 +11,20 @@ var datecurrent=moment().format('YYYY-MM-DD');
 MODULO PARA MOSTRAR IMPORTES POR CONCEPTOS, EN LA 
 VENTANA DE CAJA APERTURADA.
 ==================================================*/
-$("#modalcajaventa").click(function(ev) {
+//$("#modalcajaventa").click(function(ev) {
 
-    ev.preventDefault();
-    var target = $(this).attr("href");
-    console.log("entra:",target)
+    //ev.preventDefault();
+    //var target = $(this).attr("href");
+    //console.log("entra:",target)
     //console.log(moment().format('YYYY-MM-DD')); 
-    
+   
     //window.location="modal-caja#cajaAbierta";
 
     //$('#cajaAbierta').on('show.bs.modal', function (e) {})
 
     //generar(iddecaja,numdecaja,campofecha,cerrado,datecurrent);
+    //setTimeout(sumartotalcaja,1200); 
+//});
 
 
 
@@ -45,7 +47,7 @@ $("#modalcajaventa").click(function(ev) {
 
 
 /*==== CONSULTA DE VENTAS ======== */
-traerventas(iddecaja,numdecaja,campofecha,cerrado,datecurrent);
+//traerventas(iddecaja,numdecaja,campofecha,cerrado,datecurrent);
 async function traerventas(iddecaja,numdecaja,campofecha,cerrado,datecurrent){
     let data1 = new FormData();
     data1.append("fechasalida", campofecha);
@@ -72,7 +74,7 @@ async function traerventas(iddecaja,numdecaja,campofecha,cerrado,datecurrent){
 }
 
 /*==== CONSULTA VENTAS DE ENVASES ======== */ 
-traerenvases(iddecaja,numdecaja,campofecha,cerrado,datecurrent);  
+//traerenvases(iddecaja,numdecaja,campofecha,cerrado,datecurrent);  
 async function traerenvases(iddecaja,numdecaja,campofecha,cerrado,datecurrent){
 let data2 = new FormData();
 data2.append("fechasalida", campofecha);
@@ -99,7 +101,7 @@ try{
 }
 
 /*==== CONSULTA VENTAS DE SERVICIOS ======== */   
-traerservicios(iddecaja,numdecaja,campofecha,cerrado,datecurrent);
+//traerservicios(iddecaja,numdecaja,campofecha,cerrado,datecurrent);
 async function traerservicios(iddecaja,numdecaja,campofecha,cerrado,datecurrent){
 let data3 = new FormData();
 data3.append("fechasalida", campofecha);
@@ -125,7 +127,7 @@ data3.append("numcaja", numdecaja);
 }        
 
 /*==== CONSULTA VENTAS DE ABARROTES ======== */   
-traerotros(iddecaja,numdecaja,campofecha,cerrado,datecurrent);
+//traerotros(iddecaja,numdecaja,campofecha,cerrado,datecurrent);
 async function traerotros(iddecaja,numdecaja,campofecha,cerrado,datecurrent){
     let data4 = new FormData();
     data4.append("fechasalida", campofecha);
@@ -186,7 +188,7 @@ async function traerotros(iddecaja,numdecaja,campofecha,cerrado,datecurrent){
 
 
 /*==== CONSULTA VENTAS A CREDITO ======== */  
-traerventacredito(numdecaja,campofecha,cerrado,datecurrent);
+//traerventacredito(numdecaja,campofecha,cerrado,datecurrent);
 async function traerventacredito(numdecaja,campofecha,cerrado,datecurrent){
 let data5 = new FormData();
 data5.append("fechasalida", campofecha);
@@ -214,7 +216,7 @@ for (var pair of data5.entries()){console.log(pair[0]+ ', ' + pair[1]);}
 }
 
 /*==== CONSULTA DE INGRESOS E EGRESOS ======== */
-traeringresosegresos(iddecaja,numdecaja,cerrado);
+//traeringresosegresos(iddecaja,numdecaja,cerrado);
 async function traeringresosegresos(iddecaja,numdecaja,cerrado){
     let datos6 = new FormData();
 	datos6.append("item", iddecaja);
@@ -273,34 +275,6 @@ function traerimportecajachica(iddecaja,numdecaja,cerrado,datecurrent){
 }            
 
 
-function sumartotalcaja(){
-    totalefectivo = 0
-    var data="";
-    //console.log("ingreso:", $('#totalingreso' ).data( 'ingreso' ) );
-    //console.log("egreso:", $('#totalegreso' ).data( 'egreso' ) );
-
-	$(".idforsuma").each(function(index, value) {
-        //console.log(index, value);
-        //console.log("evalua: ",$(this).data());
-        data = $(this).data();
-        for(var i in data){
-          //console.log("itera:",i,"imprte:",data[i]);
-            if(i==="egreso"){
-                if(parseFloat(data[i])>0){
-                    totalefectivo-=parseFloat(data[i]);    
-                }
-            }else{
-               totalefectivo+=parseFloat(data[i]) || 0;
-            }
-                //console.log(data[i])
-        }            
-    });
-
-    totalefectivo=new Intl.NumberFormat('en', {style: 'currency',currency: 'USD',currencySign: 'accounting',}).format(totalefectivo);
-    $('#totalefectivo').html(totalefectivo);
-    //console.log("entro final",totalefectivo);
-}
-
 function showErrorFetch(err) { 
     console.log('muestra error', err);
     swal.fire({
@@ -330,23 +304,110 @@ function getCookie(name) {
 //var csrftoken = getCookie('csrftoken');
 //console.log(csrftoken);
 
-/*
-$('#cajaactiva').on('click', function(ev) {
-    //window.location = "inicio";
+
+$('#modalcajaventa').on('click', function(ev) {
+  
+    // window.setTimeout(function(){ 
+    //     console.log("entra")
+    //     location.reload();
+    //     abrirmodal();
     
-     window.setTimeout(function(){ 
-        console.log("entra")
-        location.reload();
-        abrirmodal();
-     } ,2000);
+    //  } ,2000);
+    datocajachica=traerimportecajachica(iddecaja,numdecaja,campofecha,datecurrent,cerrado);
+
+    let data1 = new FormData();
+    data1.append("fechasalida", campofecha);
+    data1.append("fechaactual", datecurrent);
+    data1.append("cerrado", cerrado);
+    data1.append("numcaja", numdecaja);
+    try{
+        fetch('ajax/vercaja.ajax.php?op=traertotales', {
+            method: 'POST',
+            body: data1
+        })
+         .then(respuesta=>respuesta.json())
+         .then(datos=>{
+            //console.log(datos);
+            //console.log(datos.ventasgral);
+            totalventasgral=datos.ventasgral==null?0:parseFloat(datos.ventasgral);
+            totaldeventas=new Intl.NumberFormat('en', {style: 'currency',currency: 'USD',currencySign: 'accounting',}).format((totalventasgral));
+            $('#totaldeventas').html(totaldeventas);
+            $('#totaldeventas').attr('data-ventas',(totalventasgral));
+
+            totalenvases=datos.ventasenvases==null?0:datos.ventasenvases;
+            totalenvases=new Intl.NumberFormat('en', {style: 'currency',currency: 'USD',currencySign: 'accounting',}).format((totalenvases));
+            $('#totalenvases').html(totalenvases);
+            $('#totalenvases').attr('data-envases',(datos.ventasenvases));
+    
+            totalservicios=datos.ventaservicios==null?0:datos.ventaservicios;
+            totalservicios=new Intl.NumberFormat('en', {style: 'currency',currency: 'USD',currencySign: 'accounting',}).format((totalservicios));
+            $('#totalservicios').html(totalservicios);
+            $('#totalservicios').attr('data-servicios',(datos.ventaservicios));
+
+            totalabarrotes=datos.ventasabarrotes==null?0:parseFloat(datos.ventasabarrotes);
+            totalotros=new Intl.NumberFormat('en', {style: 'currency',currency: 'USD',currencySign: 'accounting',}).format((totalabarrotes));
+            $('#totalotros').html(totalotros);
+            $('#totalotros').attr('data-otros',(totalabarrotes));
+
+            totalcredito=datos.ventascredito==null?0:parseFloat(datos.ventascredito);
+            totalcredito=new Intl.NumberFormat('en', {style: 'currency',currency: 'USD',currencySign: 'accounting',}).format((totalcredito));
+            $('#totalacredito').html(totalcredito);
+            $('#totalacredito').attr('data-creditos',(totalcredito));
+
+            totalingreso=datos.ingresodia==null?0:datos.ingresodia;
+            totalegreso=datos.egresodia==null?0:datos.egresodia;
+            $('#totalingreso').attr('data-ingreso',totalingreso);
+            $('#totalegreso').attr('data-egreso',totalegreso);
+            totalingreso=new Intl.NumberFormat('en',{style:'currency',currency:'USD',currencySign: 'accounting',}).format(totalingreso);
+            totalegreso=new Intl.NumberFormat('en',{style: 'currency',currency: 'USD',currencySign: 'accounting',}).format(totalegreso);
+            $('#totalingreso').html(totalingreso);
+            $('#totalegreso').html(totalegreso);
+
+            setTimeout(sumartotalcaja,1000); 
+
+            $('#cajaAbierta').modal('show'); 
+
+        }) 
+
+   }catch(showErrorFetch){    
+
+   }    
+
+
 });
 
+function sumartotalcaja(){
+    totalefectivo = 0
+    var data="";
+    //console.log("ingreso:", $('#totalingreso' ).data( 'ingreso' ) );
+    //console.log("egreso:", $('#totalegreso' ).data( 'egreso' ) );
+
+	$(".idforsuma").each(function(index, value) {
+        //console.log(index, value);
+        //console.log("evalua: ",$(this).data());
+        data = $(this).data();
+        for(var i in data){
+          //console.log("itera:",i,"importe:",data[i]);
+            if(i==="egreso"){
+                if(parseFloat(data[i])>0){
+                    totalefectivo-=parseFloat(data[i]);    
+                }
+            }else{
+               totalefectivo+=parseFloat(data[i]) || 0;
+            }
+                //console.log(data[i])
+        }            
+    });
+
+    totalefectivo=new Intl.NumberFormat('en', {style: 'currency',currency: 'USD',currencySign: 'accounting',}).format(totalefectivo);
+    $('#totalefectivo').html(totalefectivo);
+    //console.log("entro final",totalefectivo);
+}
+/*
 $('#cajaAbierta').on('show.bs.modal', function (e) {
 })
 
 */
-setTimeout(sumartotalcaja,1200); 
-});
 
 $("#cajaAbierta").on('hidden.bs.modal', ()=> {
     //console.log("removedata");

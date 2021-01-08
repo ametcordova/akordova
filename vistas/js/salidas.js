@@ -572,7 +572,7 @@ json.forEach(obj => {
 		
 		'<td class="text-center"><input type="hidden" name="precio_venta[]" id="precio_venta[]" class="preciovta" value='+precioventa+' step="any" style="width:5rem" readonly dir="rtl">'+preciovtaunit+'</td>'+
 		
-		'<td class="text-center disabled"><input type="text" name="subtotal" id="subtotal'+conta+'" class="importe_linea" value="'+subtotal+'" style="width:5rem" step="any" readonly dir="rtl"></td>'+
+		'<td class="text-center disabled"><input type="hidden" name="subtotal" id="subtotal'+conta+'" class="importe_linea" value="'+subtotal+'" style="width:5rem" step="any" readonly dir="rtl">'+subtotal+'</td>'+
 	
 		'</tr>';
 		conta++;

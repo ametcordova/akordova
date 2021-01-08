@@ -171,7 +171,6 @@ $(".activarDatatable").on("click", ".btnActivar", function(){
 /*=============================================
 REVISAR SI EL USUARIO YA ESTÁ REGISTRADO
 =============================================*/
-
 $("#nuevoUsuario").change(function(){
 
 	$(".alert").remove();

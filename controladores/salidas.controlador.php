@@ -240,8 +240,6 @@ static public function ctrSumaTotalVentas($tabla, $item, $valor,$cerrado, $fecha
 	}else{
 		return 0;
 	}	
-	
-
 }     
 /*=============================================
 MOSTRAR VENTAS ENVASES
@@ -422,6 +420,22 @@ static public function ctrImprimirCancelacion($campo, $valor){
 	return $respuesta;
 
 }  	
+
+
+/*============================================================
+MOSTRAR VENTAS SIN ENVASES Y SIN SERVICIOS
+==============================================================*/
+static public function ctrSumaTotales($tabla, $item, $valor,$cerrado, $fechacutvta){
+
+	$respuesta = ModeloSalidas::mdlSumaTotales($tabla, $item, $valor, $cerrado, $fechacutvta);
+
+	if($respuesta){
+		return $respuesta;
+	}else{
+		return 0;
+	}	
+}     
+
 
 
 }	//fin de la clase	

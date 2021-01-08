@@ -43,13 +43,13 @@ $imagen=defined('IMAGEN')?'../../../'.IMAGEN:'../../../config/imagenes/logotipoe
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="../../tickets/ticket.css?v=14092020">
+        <link rel="stylesheet" href="../../tickets/ticket.css?v=15092020">
 		
         <title>Impresión de ticket</title>
     </head>
     <body>
         <div class="ticket centered">
-		 <img src=<?php echo $imagen;?> style="width:100px; height:50px" alt="Logotipo" />
+		 <img src=<?php echo $imagen;?> style="width:100px; height:60px" alt="Logotipo" />
             <p class="centered" style="font-family: Arial; font-size:12px;padding-top:-15px; margin-top:0"><?php echo $razonsocial;?> 
                 <br><?php echo DIRECCION;?> 
                 <br><strong>RFC:</strong> <?php echo RFC;?> 
@@ -70,8 +70,8 @@ $imagen=defined('IMAGEN')?'../../../'.IMAGEN:'../../../config/imagenes/logotipoe
                 <table style="font-family: Arial; font-size:12px;">
                     <thead style="font-family: Arial; font-size:12px;">
                         <tr>
-                            <th class="titlequantity both_border">Cant.</th>
                             <th class="titledescription both_border">Descripción</th>
+                            <th class="titlequantity both_border">Cant.</th>
                             <th class="titleprice both_border">Total</th>
                         </tr>
                     </thead>

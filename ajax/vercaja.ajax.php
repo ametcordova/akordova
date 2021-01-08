@@ -49,7 +49,8 @@ switch ($_GET["op"]){
 
      break;
 
-     case 'traertotalventas':
+     //trar los totales
+     case 'traertotales':
         if(isset($_POST["numcaja"])){
             $tabla="hist_salidas";
             $item=$_POST["fechasalida"];
@@ -57,12 +58,13 @@ switch ($_GET["op"]){
             $valor=$_POST["numcaja"];
             $cerrado=$_POST["cerrado"];
 
-            $respuesta = ControladorSalidas::ctrSumaTotalVentas($tabla, $item, $valor, $cerrado, $fechacutvta);
+            $respuesta = ControladorSalidas::ctrSumaTotales($tabla, $item, $valor, $cerrado, $fechacutvta);
 
             echo json_encode($respuesta);
 
         };
      break;
+
 
      case 'traertotalenvases':
         if(isset($_POST["numcaja"])){
@@ -212,6 +214,22 @@ switch ($_GET["op"]){
             };
         }
     break;  
+
+    case 'traertotalventas':
+        if(isset($_POST["numcaja"])){
+            $tabla="hist_salidas";
+            $item=$_POST["fechasalida"];
+            $fechacutvta=null;
+            $valor=$_POST["numcaja"];
+            $cerrado=$_POST["cerrado"];
+
+            $respuesta = ControladorSalidas::ctrSumaTotalVentas($tabla, $item, $valor, $cerrado, $fechacutvta);
+
+            echo json_encode($respuesta);
+            //echo $respuesta;
+
+        };
+     break;
 
 }
 

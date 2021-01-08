@@ -36,8 +36,8 @@ $totBajoStock = count($bajostock);
 
     <li class="nav-item d-none d-sm-inline-block">
       <?php
-      if (isset($_SESSION['caja'])) { ?>
-        <a href="#cajaAbierta" data-toggle="modal" id="modalcajaventa" class="nav-link font-weight-bold">
+      if (isset($_SESSION['caja'])) {    //cajaAbierta?>      
+        <a href="#" data-toggle="modal" id="modalcajaventa" class="nav-link font-weight-bold">
           <button type="button" class="btn btn-sm btn-warning"><?= $_SESSION['caja']; ?></button>
         </a>
         <input type="hidden" id="numcaja" value="<?= $_SESSION['idcaja']; ?>">

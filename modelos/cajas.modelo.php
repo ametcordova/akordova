@@ -245,15 +245,13 @@ static public function mdlMostrarCajas($tabla, $item, $valor){
 	VALIDAR CAJA ABIERTA
 =============================================*/
 static public function mdlChecarCaja($tabla, $item, $valor){
-
+	//item=id_caja
 	$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item AND fecha_venta=curdate() AND estatus=0"); 
 	$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
 	$stmt -> execute();
 	
 		return $stmt -> fetch();
-
-	$stmt -> close();
 
 	$stmt = null;
 

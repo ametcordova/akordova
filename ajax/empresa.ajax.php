@@ -151,6 +151,7 @@ function creaArchivo($rutaimagen){
    define ('CORREO','".trim($_POST["mailempresa"])."');
    define ('IMPRESORA','".trim($_POST["impresora"])."');
    define ('DRIVEBACKUP','".trim($_POST["rutarespaldo"])."');
+   define ('DATABASE','".trim($_POST["namedatabase"])."');
    define ('SLOGAN','".trim($_POST["slogan"])."');
    define ('FOOTER','".trim($_POST["msjpieticket"])."');
    define ('LEYENDA','".trim($_POST["mensajeticket"])."');
